@@ -80,13 +80,13 @@ class Library {
             borrower.borrowBook(book.title); // updates borrower list
         }
     }
-    returnBook(borrowerId, isbn) {
-        const book = this.books.find(b => b.isbn === isbn);
-        const borrower = this.borrowers.find(b => b.borrowerId === borrowerId);
+    returnBook(borrowerId, isbn) { // allows borrower to return book
+        const book = this.books.find(b => b.isbn === isbn); // finds book
+        const borrower = this.borrowers.find(b => b.borrowerId === borrowerId); // finds borrower
 
-        if (book && borrower && borrower.borrowedBooks.includes(book.title)) {
-            book.updateCopies(1);
-            borrower.returnBook(book.title);
+        if (book && borrower && borrower.borrowedBooks.includes(book.title)) { // checks to see if return if valid
+            book.updateCopies(1); // increases book copies
+            borrower.returnBook(book.title); // updates borrower list
         }
     }
 }
