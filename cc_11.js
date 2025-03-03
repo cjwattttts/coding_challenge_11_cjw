@@ -40,7 +40,7 @@ class Borrower {
         this.borrowedBooks.push(bookTitle);
     }
 
-    return(bookTitle) { // removes a book from borrowed list
+    returnBook(bookTitle) { // removes a book from borrowed list
         this.borrowedBooks = this.borrowedBooks.filter(book => book !== bookTitle);
     }
 }
