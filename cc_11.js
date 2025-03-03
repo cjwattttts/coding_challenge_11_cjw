@@ -73,13 +73,14 @@ class Library {
 
     lendBook(borrowerId, isbn) { // allows borrower to borrow book
         const book = this.books.find(b => b.isbn === isbn);
-        const borrower = this.borrowers.find(b => b.borrowerId === borrowerId);
+        const borrower = this.getBorrower(borrowerId);
 
         if (book && book.copies > 0 && borrower) { // checks if book exists
             book.updateCopies(-1); // reduces book copies
             borrower.borrowBook(book.title); // updates borrower list
         }
     }
+
     returnBook(borrowerId, isbn) { // allows borrower to return book
         const book = this.books.find(b => b.isbn === isbn); // finds book
         const borrower = this.borrowers.find(b => b.borrowerId === borrowerId); // finds borrower
@@ -88,6 +89,15 @@ class Library {
             book.updateCopies(1); // increases book copies
             borrower.returnBook(book.title); // updates borrower list
         }
+    }
+
+    getBorrower(borrowerId) { // finds borrower or makes new one
+        let borrower = this.borrowers.find(b => b.borrowerId === borrowerId);
+        if (!borrower) {
+            borrower = new Borrower(`Borrower ${borrowerId}`, borrowerId); // creates new borrower
+            this.borrowers.push(borrower);
+        }
+        return borrower;
     }
 }
 
