@@ -59,15 +59,15 @@ console.log(borrower1.borrowedBooks);
 
 class Library {
     constructor () {
-        this.books = [];
-        this.borrowers = [];
+        this.books = []; // stores book instances
+        this.borrowers = []; // stores borrower instances
     }
 
-    addBook(book) {
+    addBook(book) { // adds new book to library
         this.books.push(book);
     }
 
-    listBooks() {
+    listBooks() { // logs all book details
         this.books.forEach(book => console.log(book.getDetails()));
     }
 
